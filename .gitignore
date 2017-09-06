@@ -2,3 +2,4 @@
 .idea
 *.xml
 *.sql
+db.sqlite3
