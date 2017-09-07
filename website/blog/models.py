@@ -25,6 +25,8 @@ class Category(models.Model):
 
         super(Category, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return self.name
 
 class Dates(models.Model):
     """ Define blog dates for posts and articles """
