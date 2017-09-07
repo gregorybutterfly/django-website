@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.text import slugify
+from unidecode import unidecode
 
 
 class Author(models.Model):
@@ -15,7 +17,7 @@ class Author(models.Model):
 class Category(models.Model):
     """ Define blog Categories """
     name = models.CharField('Category Name', max_length=30)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
