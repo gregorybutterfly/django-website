@@ -8,10 +8,20 @@ class Author(models.Model):
     name = models.CharField('Authors name', max_length=30)
     bio = models.TextField('About Author')
 
+    def __str__(self):
+        return self.name
+
 
 class Category(models.Model):
     """ Define blog Categories """
     name = models.CharField('Category Name', max_length=30)
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.name))
+
+        super(Category, self).save(*args, **kwargs)
 
 
 class Dates(models.Model):
@@ -22,7 +32,16 @@ class Dates(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=10)
+    slug = models.SlugField(unique=True)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.name))
+
+        super(Tag, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
 
 class Post(models.Model):
     """ Define blog post """
@@ -32,3 +51,14 @@ class Post(models.Model):
     author = models.ForeignKey(Author)
     date = models.ForeignKey(Dates)
     tag = models.ForeignKey(Tag)
+    slug = models.SlugField(unique=True)
+    img = models.CharField(max_length=1000, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.title))
+
+        super(Post, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
