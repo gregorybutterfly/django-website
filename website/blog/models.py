@@ -33,10 +33,13 @@ class Dates(models.Model):
     created = models.DateField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(default=timezone.now)
 
+    def __str__(self):
+        return str(self.updated)
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=10)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -55,7 +58,7 @@ class Post(models.Model):
     author = models.ForeignKey(Author)
     date = models.ForeignKey(Dates)
     tag = models.ForeignKey(Tag)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True)
     img = models.CharField(max_length=1000, blank=True, null=True)
 
     def save(self, *args, **kwargs):

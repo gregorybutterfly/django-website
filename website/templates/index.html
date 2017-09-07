@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h3>Index</h3>
+
+{% for item in view.posts %}
+<h4>{{ item.title }}</h4>
+<p>Date: {{ item.date }}, Category: {{ item.category }}</p>
+<p>{{ item.body }}</p>
+{% endfor %}
+
+{% endblock content %}
