@@ -21,7 +21,7 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(unidecode(self.name))
+            self.slug = slugify(unidecode(self.name + '-' + str(self.id)))
 
         super(Category, self).save(*args, **kwargs)
 
@@ -43,7 +43,7 @@ class Tag(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(unidecode(self.name))
+            self.slug = slugify(unidecode(self.name  + '-' + str(self.id)))
 
         super(Tag, self).save(*args, **kwargs)
 
@@ -63,7 +63,7 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(unidecode(self.title))
+            self.slug = slugify(unidecode(self.title + '-' + str(self.id)))
 
         super(Post, self).save(*args, **kwargs)
 

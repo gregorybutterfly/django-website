@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<!-- linkback -->
+<a href="{% url 'blog:index' %}">aaa</a>
+<h3>{{ object.title }}</h3>
+<h5><b>Category:</b> {{ object.category }}, <b>Date:</b> {{ object.date }}</h5>
+<p>
+    {{ object.body }}
+</p>
+
+{% endblock content %}
