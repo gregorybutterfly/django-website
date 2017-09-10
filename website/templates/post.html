@@ -1,8 +1,12 @@
 {% extends 'layouts/base.html' %}
+{% block head_title %} {{ block.super }} | {{ object.title }} {% endblock head_title %}
 
 {% block content %}
 <!-- linkback -->
-<a href="{% url 'blog:index' %}">aaa</a>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="{% url 'blog:index' %}">Home</a></li>
+  <li class="breadcrumb-item active">{{ object.title }}</li>
+</ol>
 <h3>{{ object.title }}</h3>
 <h5><b>Category:</b> {{ object.category }}, <b>Date:</b> {{ object.date }}</h5>
 <p>
