@@ -1,20 +1,28 @@
 {% extends 'layouts/base.html' %}
+{% load static %}
 
 {% block content %}
-
-<h2>Categories</h2>
-<ul>
-    {% for item in view.categories %}
-    <li>{{ item }}</li>
-    {% endfor %}
-</ul>
-
-<h2>Posts</h2>
+<!-- Project One -->
 {% for post in view.posts %}
-<p>
-    <h3><a href="post/{{ post.slug }}">{{ post.title }}</a></h3>
-    <p>{{ post.body }}</p>
-</p>
-{% endfor %}
-
+<div class="row">
+    <div class="col-md-3">
+        <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="{% static 'img/blank.png' %}">
+        </a>
+    </div>
+    <div class="col-md-8 post-preview">
+        <h3 class="post-title"><a href="post/{{ post.slug }}">{{ post.title }}</a></h3>
+        <div class="small">
+            Posted in: {{ post.category }}, {{ post.date | date }} by {{ post.author }}
+        </div>
+        <p>{{ post.body }}</p>
+          <a class="btn btn-secondary float-right" href="#">READ MORE</a>
+        <div class="clearfix">
+        </div>
+        <hr>
+    </div>
+    </div>
+    <!-- /.row -->
+    {% endfor %}
+</div>
 {% endblock content %}
