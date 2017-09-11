@@ -13,7 +13,7 @@
     </div>
     <!-- post/{{ post.slug }} -->
     <div class="col-md-8 post-preview">
-        <h3 class="post-title"><a href="{% url 'blog:post' post.slug post.pk %}">{{ post.title }}</a></h3>
+        <h3 class="post-title"><a href="{% url 'blog:post' post.slug post.pk %}" style="color:#3d2b17">{{ post.title }}</a></h3>
         <div class="small">
             Posted in: {{ post.category }}, {{ post.date | date }} by {{ post.author }}
         </div>
