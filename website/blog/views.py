@@ -31,6 +31,9 @@ class PostView(DetailView):
     #query_pk_and_slug = True
     template_name = 'post.html'
 
+class ProfileView(TemplateView):
+    template_name = 'profile.html'
+
 
 
 
